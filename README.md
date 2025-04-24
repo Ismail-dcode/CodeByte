@@ -10,6 +10,20 @@ Our team participated in the **Technophilia 2025 AI Hackathon** at MIT College, 
 > 🔍 “From Sketch to Code in Seconds”
 
 ---
+---
+
+## 👥 Team DevStrom Members
+
+| Name | Role | GitHub | LinkedIn |
+|------|------|--------|----------|
+| **[ Ismail Shaikh ]** | AI Developer & Backend (Lead)| [GitHub](https://github.com/Ismail-dcode) | [LinkedIn](https://www.linkedin.com/in/ismail-shaikh-19798a335/) |
+| **[ Atharve Jaiswal ]** | Frontend Developer | [GitHub](https://github.com/Atharva-dcode) | [LinkedIn](https://www.linkedin.com/in/atharva-jaiswal07) |
+| **[ Yash Gawaskar ]** | UI/UX Designer | [GitHub](https://github.com/teammate2) | [LinkedIn](https://linkedin.com/in/teammate2) |
+| **[ Shreyash Jadhav ]** | AI Integration & Testing | [GitHub](https://github.com/shreyash-jadhav818) | [LinkedIn](https://www.linkedin.com/in/shreyash-jadhav-sj0818/) |
+
+> Feel free to connect with us
+
+---
 
 ## ✨ Features
 
@@ -72,19 +86,6 @@ Our team participated in the **Technophilia 2025 AI Hackathon** at MIT College, 
 - [Gemini API by Google](https://deepmind.google/discover/gemini/) – Used for image understanding and code generation.
 - [Node.js](https://nodejs.org/) – Backend runtime environment.
 - [HTML & CSS Documentation](https://developer.mozilla.org/en-US/) – For frontend structure and styling.
-
----
-
-## 👥 Team DevStrom Members
-
-| Name | Role | GitHub | LinkedIn |
-|------|------|--------|----------|
-| **[ Ismail Shaikh ]** | AI Developer & Backend (Lead)| [GitHub](https://github.com/Ismail-dcode) | [LinkedIn](https://www.linkedin.com/in/ismail-shaikh-19798a335/) |
-| **[ Atharve Jaiswal ]** | Frontend Developer | [GitHub](https://github.com/Atharva-dcode) | [LinkedIn](https://www.linkedin.com/in/atharva-jaiswal07) |
-| **[ Yash Gawaskar ]** | UI/UX Designer | [GitHub](https://github.com/teammate2) | [LinkedIn](https://linkedin.com/in/teammate2) |
-| **[ Shreyash Jadhav ]** | AI Integration & Testing | [GitHub](https://github.com/shreyash-jadhav818) | [LinkedIn](https://www.linkedin.com/in/shreyash-jadhav-sj0818/) |
-
-> Feel free to connect with us 
 
 ---
 
