@@ -66,8 +66,6 @@ Our team participated in the **Technophilia 2025 AI Hackathon** at MIT College, 
 
 ---
 
----
-
 ## 🔗 References
 
 - [Google AI Studio](https://makersuite.google.com/) – For training and deploying the AI model.
@@ -87,4 +85,49 @@ Our team participated in the **Technophilia 2025 AI Hackathon** at MIT College, 
 | **[ Shreyash Jadhav ]** | AI Integration & Testing | [GitHub](https://github.com/shreyash-jadhav818) | [LinkedIn](https://www.linkedin.com/in/shreyash-jadhav-sj0818/) |
 
 > Feel free to connect with us 
+
+---
+
+## 🧪 Getting Started
+
+Follow these instructions to set up and run the project locally on your machine (localhost:3000).
+
+### 🚀 Prerequisites
+
+Make sure you have the following installed:
+
+- [Node.js & npm](https://nodejs.org/) (v16 or higher)
+- [Git](https://git-scm.com/)
+- Internet connection for API and model calls
+
+---
+
+
+
+## 📥 Download Specific File
+
+You can download the Project file directly:
+
+👉 [Download `FinalCopy`](https://github.com/Ismail-dcode/Day-Hackathon-Local/tree/main/DevStrom-4th-FinalCopy)
+
+
+### 📦 Installation
+
+1. **Clone the Repository**
+
+```bash
+git clone https://github.com/Ismail-dcode/Day-Hackathon-Local.git
+```
+2. **FOR RUN PROJECT**
+```bash
+
+node main.js
+
+```
+2. **PREVIEW ON BROWSER TYPE**
+```bash
+
+localhost:3000
+
+```
 
