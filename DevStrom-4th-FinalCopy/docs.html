@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Docs - Code-Byte</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <!-- Add Prism.js for code highlighting -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" rel="stylesheet" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-javascript.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-jsx.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-typescript.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-java.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-css.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-html.min.js"></script>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo">
+            <img src="logo.jpg" alt="CodeByte Logo" class="logo-img">
+            <span>CodeByte...</span>
+        </div>
+        <ul class="nav-links">
+            <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
+            <li><a href="docs.html"><i class="fas fa-book"></i> Docs</a></li>
+            <li><a href="how-it-works.html"><i class="fas fa-cogs"></i> How It Works</a></li>
+            <li><button id="theme-toggle" class="theme-toggle"><i class="fas fa-moon"></i></button></li>
+            <li class="user-info">
+                <span id="user-email" class="user-email"></span>
+                <a href="#" id="logout-btn" class="logout-btn"><i class="fas fa-sign-out-alt"></i> Logout</a>
+            </li>
+        </ul>
+    </nav>
+    <div class="container">
+        <header>
+            <h1>Documentation</h1>
+            <p>Welcome to the Code-Byte documentation. Here you'll find everything you need to know about using our image analysis platform.</p>
+        </header>
+        <main>
+            <section class="doc-section">
+                <h2>Getting Started</h2>
+                <p class="section-intro">Code-Byte is an advanced image analysis platform that helps you understand and extract insights from your images. Follow these steps to get started:</p>
+                <ol class="steps-list">
+                    <li>Upload an image using the drag-and-drop interface or file selector</li>
+                    <li>Enter your analysis prompt in the text area</li>
+                    <li>Click the "Analyze Image" button to process your request</li>
+                    <li>View the results and any generated code snippets</li>
+                </ol>
+            </section>
+
+            <section class="doc-section">
+                <h2>Features</h2>
+                <div class="feature-grid">
+                    <div class="feature-card">
+                        <i class="fas fa-upload"></i>
+                        <h3>Image Upload</h3>
+                        <p>Supports drag-and-drop and file selection for easy image uploads</p>
+                    </div>
+                    <div class="feature-card">
+                        <i class="fas fa-code"></i>
+                        <h3>Code Generation</h3>
+                        <p>Automatically generates code snippets based on image analysis</p>
+                    </div>
+                    <div class="feature-card">
+                        <i class="fas fa-palette"></i>
+                        <h3>Theme Support</h3>
+                        <p>Light and dark theme options for comfortable viewing</p>
+                    </div>
+                    <div class="feature-card">
+                        <i class="fas fa-mobile-alt"></i>
+                        <h3>Responsive Design</h3>
+                        <p>Works seamlessly across all device sizes</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="doc-section">
+                <h2>Code Snippet Features</h2>
+                <p class="section-intro">Code-Byte provides several features for working with code snippets:</p>
+                <ul class="feature-list">
+                    <li>Syntax highlighting for multiple programming languages</li>
+                    <li>Copy-to-clipboard functionality with visual feedback</li>
+                    <li>Responsive code containers that adapt to screen size</li>
+                    <li>Support for multiple code blocks in a single analysis</li>
+                </ul>
+            </section>
+
+            <section class="doc-section">
+                <h2>Best Practices</h2>
+                <p class="section-intro">To get the best results from Code-Byte:</p>
+                <ul class="best-practices-list">
+                    <li>Use clear, high-quality images for analysis</li>
+                    <li>Be specific in your analysis prompts</li>
+                    <li>Check the generated code for accuracy before implementation</li>
+                    <li>Use the dark theme in low-light environments</li>
+                </ul>
+            </section>
+
+            <section class="doc-section">
+                <h2>Browser Support</h2>
+                <p class="section-intro">Code-Byte is compatible with the following browsers:</p>
+                <ul class="browser-list">
+                    <li>Google Chrome (latest version)</li>
+                    <li>Mozilla Firefox (latest version)</li>
+                    <li>Microsoft Edge (latest version)</li>
+                    <li>Safari (latest version)</li>
+                </ul>
+            </section>
+        </main>
+    </div>
+    <script src="script.js"></script>
+    <script src="theme.js"></script>
+    <script>
+        // Check if user is logged in
+        if (localStorage.getItem('isLoggedIn') !== 'true') {
+            window.location.href = 'auth.html';
+        }
+
+        // Display user email
+        const currentUser = JSON.parse(localStorage.getItem('currentUser') || '{}');
+        document.getElementById('user-email').textContent = currentUser.email || '';
+
+        // Handle logout
+        document.getElementById('logout-btn').addEventListener('click', (e) => {
+            e.preventDefault();
+            localStorage.removeItem('isLoggedIn');
+            localStorage.removeItem('currentUser');
+            window.location.href = 'auth.html';
+        });
+    </script>
+</body>
+</html> 
