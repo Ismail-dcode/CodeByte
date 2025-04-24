@@ -45,7 +45,6 @@ Our team participated in the **Technophilia 2025 AI Hackathon** at MIT College, 
 ---
 
 ## 📸 Screenshots
-## 📸 Screenshots
 
 ### 🔐 Login Page
 ![Login Page](screenshots/login-page.png)
