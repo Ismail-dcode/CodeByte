@@ -3,9 +3,14 @@
   "version": "1.0.0",
   "type": "module",
   "description": "AI-powered image analysis application",
-  "main": "main.js",
+  "main": "server/main.js",
+  "engines": {
+    "node": ">=18.0.0"
+  },
   "scripts": {
-    "start": "node main.js"
+    "start": "node server/main.js",
+    "dev": "node server/main.js",
+    "build": "echo 'No build step required'"
   },
   "dependencies": {
     "@google/generative-ai": "^0.1.3",

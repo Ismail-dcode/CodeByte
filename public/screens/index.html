@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Code-Byte</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <!-- Add Prism.js for code highlighting -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" rel="stylesheet" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-javascript.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-jsx.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-typescript.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-java.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-css.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-html.min.js"></script>
+</head>
+
+<body>
+    <nav class="navbar">
+        <div class="logo">
+            <img src="../../assets/images/logo.jpg" alt="CodeByte Logo" class="logo-img">
+            <span>CodeByte...</span>
+        </div>
+        <button class="menu-toggle" id="menuToggle">
+            <i class="fas fa-bars"></i>
+        </button>
+        <ul class="nav-links" id="navLinks">
+            <li><a href="/"><i class="fas fa-home"></i> Home</a></li>
+            <li><a href="/docs"><i class="fas fa-book"></i> Docs</a></li>
+            <li><a href="/how-it-works"><i class="fas fa-cogs"></i> How It Works</a></li>
+            <li><button id="theme-toggle" class="theme-toggle"><i class="fas fa-moon"></i></button></li>
+            <li class="user-info">
+                <span id="user-email" class="user-email"></span>
+                <a href="#" id="logout-btn" class="logout-btn"><i class="fas fa-sign-out-alt"></i> Logout</a>
+            </li>
+        </ul>
+    </nav>
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="hero-content">
+            <div class="hero-text">
+                <h1 class="hero-title">
+                    <span class="gradient-text">Code-Byte</span>
+                    <span class="hero-subtitle">AI-Powered Image Analysis</span>
+                </h1>
+                <p class="hero-description">
+                    Transform your design images into working code with cutting-edge AI technology. 
+                    Generate HTML, CSS, JavaScript, React components, and more from any image with unprecedented accuracy.
+                </p>
+                <div class="hero-features">
+                    <div class="feature-item">
+                        <i class="fas fa-brain"></i>
+                        <span>Advanced AI</span>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-code"></i>
+                        <span>Code Generation</span>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-bolt"></i>
+                        <span>Lightning Fast</span>
+                    </div>
+                </div>
+            </div>
+            <div class="hero-visual">
+                <div class="floating-card">
+                    <div class="card-icon">
+                        <i class="fas fa-magic"></i>
+                    </div>
+                    <h3>AI Magic</h3>
+                    <p>Advanced algorithms analyze your images</p>
+                </div>
+                <div class="floating-card">
+                    <div class="card-icon">
+                        <i class="fas fa-rocket"></i>
+                    </div>
+                    <h3>Instant Results</h3>
+                    <p>Get insights in seconds</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Analysis Section -->
+    <div class="container">
+        <div class="analysis-header">
+            <h2>Generate Code from Images</h2>
+            <p>Upload a design image and get working code instantly</p>
+        </div>
+        
+        <div class="analysis-grid">
+            <!-- Upload Section -->
+            <div class="upload-section">
+                <div class="section-header">
+                    <i class="fas fa-upload"></i>
+                    <h3>Upload Design Image</h3>
+                </div>
+                <div class="upload-area" id="dropZone">
+                    <div class="upload-content">
+                        <i class="fas fa-cloud-upload-alt"></i>
+                        <h4>Drop your image here</h4>
+                        <p>or click to browse files</p>
+                        <span class="file-types">Supports: JPG, PNG, GIF, WebP</span>
+                    </div>
+                    <input type="file" id="imageInput" accept="image/*" hidden>
+                    <button class="upload-btn" onclick="document.getElementById('imageInput').click()">
+                        <i class="fas fa-folder-open"></i>
+                        Choose File
+                    </button>
+                </div>
+                <div id="preview" class="preview-container"></div>
+            </div>
+
+            <!-- Prompt Section -->
+            <div class="prompt-section">
+                <div class="section-header">
+                    <i class="fas fa-code"></i>
+                    <h3>Code Generation Prompt</h3>
+                </div>
+                <div class="prompt-wrapper">
+                    <textarea id="promptInput" placeholder="Describe what code you want to generate from this image (e.g., 'Give me the HTML and CSS for this design', 'Convert this to React components', 'Write JavaScript code for this functionality')..." rows="4"></textarea>
+                    <div class="prompt-examples">
+                        <span class="example-label">Try these examples:</span>
+                        <div class="example-chips">
+                            <span class="chip" onclick="setPrompt('Analyze this image and give its frontend code')">Frontend Code</span>
+                            <span class="chip" onclick="setPrompt('Give me the HTML and CSS for this design')">HTML & CSS</span>
+                            <span class="chip" onclick="setPrompt('Analyze image and write its code in React')">React Code</span>
+                            <span class="chip" onclick="setPrompt('Convert this design to JavaScript code')">JavaScript</span>
+                        </div>
+                    </div>
+                    <button id="analyzeBtn" class="analyze-btn" disabled>
+                        <i class="fas fa-code"></i>
+                        Generate Code
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Results Section -->
+        <div class="results-section">
+                            <div class="section-header">
+                    <i class="fas fa-file-code"></i>
+                    <h3>Generated Code</h3>
+                </div>
+            <div id="result" class="result-container">
+                <div class="placeholder">
+                    <i class="fas fa-code"></i>
+                    <p>Your generated code will appear here...</p>
+                    <span>Upload a design image and enter a prompt to get started</span>
+                </div>
+            </div>
+            <div id="codeResult" class="code-container" style="display: none;">
+                <div class="code-header">
+                    <h3>
+                        <i class="fas fa-code"></i>
+                        Generated Code
+                    </h3>
+                    <button class="copy-btn" onclick="copyCode()">
+                        <i class="fas fa-copy"></i> 
+                        <span class="copy-text">Copy Code</span>
+                    </button>
+                </div>
+                <pre><code class="language-javascript"></code></pre>
+            </div>
+        </div>
+    </div>
+
+
+    <script>
+        // Check if user is logged in
+        if (localStorage.getItem('isLoggedIn') !== 'true') {
+            window.location.href = '/auth';
+        }
+
+        // Display user email
+        const currentUser = JSON.parse(localStorage.getItem('currentUser') || '{}');
+        document.getElementById('user-email').textContent = currentUser.email || '';
+
+        // Handle logout
+        document.getElementById('logout-btn').addEventListener('click', (e) => {
+            e.preventDefault();
+            localStorage.removeItem('isLoggedIn');
+            localStorage.removeItem('currentUser');
+            window.location.href = '/auth';
+        });
+    </script>
+    <script src="../js/script.js"></script>
+    <script src="../js/theme.js"></script>
+    <script src="../js/mobile-menu.js"></script>
+</body>
+
+</html>

@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Docs - Code-Byte</title>
-    <link rel="stylesheet" href="styles.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <!-- Add Prism.js for code highlighting -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" rel="stylesheet" />
@@ -21,13 +21,13 @@
 <body>
     <nav class="navbar">
         <div class="logo">
-            <img src="logo.jpg" alt="CodeByte Logo" class="logo-img">
+            <img src="../../assets/images/logo.jpg" alt="CodeByte Logo" class="logo-img">
             <span>CodeByte...</span>
         </div>
         <ul class="nav-links">
-            <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
-            <li><a href="docs.html"><i class="fas fa-book"></i> Docs</a></li>
-            <li><a href="how-it-works.html"><i class="fas fa-cogs"></i> How It Works</a></li>
+            <li><a href="/"><i class="fas fa-home"></i> Home</a></li>
+            <li><a href="/docs"><i class="fas fa-book"></i> Docs</a></li>
+            <li><a href="/how-it-works"><i class="fas fa-cogs"></i> How It Works</a></li>
             <li><button id="theme-toggle" class="theme-toggle"><i class="fas fa-moon"></i></button></li>
             <li class="user-info">
                 <span id="user-email" class="user-email"></span>
@@ -38,7 +38,7 @@
     <div class="container">
         <header>
             <h1>Documentation</h1>
-            <p>Welcome to the Code-Byte documentation. Here you'll find everything you need to know about using our image analysis platform.</p>
+            <p>Comprehensive guide to Code-Byte's AI-powered image analysis platform. Discover features, best practices, and advanced usage patterns.</p>
         </header>
         <main>
             <section class="doc-section">
@@ -117,7 +117,7 @@
     <script>
         // Check if user is logged in
         if (localStorage.getItem('isLoggedIn') !== 'true') {
-            window.location.href = 'auth.html';
+            window.location.href = '/auth';
         }
 
         // Display user email
@@ -129,8 +129,10 @@
             e.preventDefault();
             localStorage.removeItem('isLoggedIn');
             localStorage.removeItem('currentUser');
-            window.location.href = 'auth.html';
+            window.location.href = '/auth';
         });
     </script>
+    <script src="../js/theme.js"></script>
+    <script src="../js/mobile-menu.js"></script>
 </body>
 </html> 

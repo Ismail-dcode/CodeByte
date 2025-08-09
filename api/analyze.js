@@ -1,22 +1,9 @@
-import express from 'express';
 import multer from 'multer';
-import fs from 'fs';
-import dotenv from 'dotenv';
 import { GoogleGenerativeAI } from "@google/generative-ai";
-import path from 'path';
-import { fileURLToPath } from 'url';
 
-// Load environment variables
-dotenv.config();
-
-// Initialize Express app
-const app = express();
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-
-// Configure multer for file uploads
+// Configure multer for memory storage
 const upload = multer({
-    dest: 'uploads/',
+    storage: multer.memoryStorage(),
     limits: {
         fileSize: 5 * 1024 * 1024, // 5MB limit
     },
@@ -29,21 +16,48 @@ const upload = multer({
     }
 });
 
-// Check if API key exists
-if (!process.env.API_KEY) {
-    console.error("Error: API_KEY not found in environment variables");
-    process.exit(1);
-}
-
+// Initialize Google AI
 const genAI = new GoogleGenerativeAI(process.env.API_KEY);
 const model = genAI.getGenerativeModel({ model: "gemini-2.0-flash" });
 
-// Serve static files
-app.use(express.static(__dirname));
+// Helper function to run multer middleware
+const runMiddleware = (req, res, fn) => {
+    return new Promise((resolve, reject) => {
+        fn(req, res, (result) => {
+            if (result instanceof Error) {
+                return reject(result);
+            }
+            return resolve(result);
+        });
+    });
+};
 
-// API endpoint for image analysis
-app.post('/api/analyze', upload.single('image'), async (req, res) => {
+export default async function handler(req, res) {
+    // Set CORS headers
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
+    res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+
+    // Handle preflight requests
+    if (req.method === 'OPTIONS') {
+        res.status(200).end();
+        return;
+    }
+
+    // Only allow POST requests
+    if (req.method !== 'POST') {
+        return res.status(405).json({ error: 'Method not allowed' });
+    }
+
     try {
+        // Check if API key exists
+        if (!process.env.API_KEY) {
+            return res.status(500).json({ error: 'API key not configured' });
+        }
+
+        // Process the file upload
+        await runMiddleware(req, res, upload.single('image'));
+
         if (!req.file) {
             return res.status(400).json({ error: 'No image file provided' });
         }
@@ -52,8 +66,8 @@ app.post('/api/analyze', upload.single('image'), async (req, res) => {
             return res.status(400).json({ error: 'No prompt provided' });
         }
 
-        // Read the uploaded image file
-        const imageBuffer = fs.readFileSync(req.file.path);
+        // Use the image buffer directly from memory
+        const imageBuffer = req.file.buffer;
         
         // Prepare the image for Gemini API
         const image = {
@@ -67,19 +81,10 @@ app.post('/api/analyze', upload.single('image'), async (req, res) => {
         const result = await model.generateContent([req.body.prompt, image]);
         const response = result.response.text();
 
-        // Clean up the uploaded file
-        fs.unlinkSync(req.file.path);
-
         // Send the response back to the frontend
         res.json({ result: response });
     } catch (error) {
         console.error('Error:', error);
         res.status(500).json({ error: error.message });
     }
-});
-
-// Start the server
-const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => {
-    console.log(`Server is running on port ${PORT}`);
-});
+}
