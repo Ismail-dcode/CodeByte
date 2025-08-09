@@ -1,17 +1,23 @@
 import express from 'express';
 import multer from 'multer';
+import fs from 'fs';
 import dotenv from 'dotenv';
 import { GoogleGenerativeAI } from "@google/generative-ai";
+import path from 'path';
+import { fileURLToPath } from 'url';
 
 // Load environment variables
 dotenv.config();
 
 // Initialize Express app
 const app = express();
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+const projectRoot = path.dirname(__dirname);
 
-// Configure multer for memory storage (no file system operations)
+// Configure multer for file uploads
 const upload = multer({
-    storage: multer.memoryStorage(),
+    dest: path.join(projectRoot, 'uploads/'),
     limits: {
         fileSize: 5 * 1024 * 1024, // 5MB limit
     },
@@ -33,6 +39,28 @@ if (!process.env.API_KEY) {
 const genAI = new GoogleGenerativeAI(process.env.API_KEY);
 const model = genAI.getGenerativeModel({ model: "gemini-2.0-flash" });
 
+// Serve static files from public directory
+app.use(express.static(path.join(projectRoot, 'public')));
+app.use('/assets', express.static(path.join(projectRoot, 'assets')));
+
+// Route for main page
+app.get('/', (req, res) => {
+    res.sendFile(path.join(projectRoot, 'public', 'screens', 'index.html'));
+});
+
+// Routes for other pages
+app.get('/auth', (req, res) => {
+    res.sendFile(path.join(projectRoot, 'public', 'screens', 'auth.html'));
+});
+
+app.get('/docs', (req, res) => {
+    res.sendFile(path.join(projectRoot, 'public', 'screens', 'docs.html'));
+});
+
+app.get('/how-it-works', (req, res) => {
+    res.sendFile(path.join(projectRoot, 'public', 'screens', 'how-it-works.html'));
+});
+
 // API endpoint for image analysis
 app.post('/api/analyze', upload.single('image'), async (req, res) => {
     try {
@@ -44,8 +72,8 @@ app.post('/api/analyze', upload.single('image'), async (req, res) => {
             return res.status(400).json({ error: 'No prompt provided' });
         }
 
-        // Use the image buffer directly from memory
-        const imageBuffer = req.file.buffer;
+        // Read the uploaded image file
+        const imageBuffer = fs.readFileSync(req.file.path);
         
         // Prepare the image for Gemini API
         const image = {
@@ -59,6 +87,9 @@ app.post('/api/analyze', upload.single('image'), async (req, res) => {
         const result = await model.generateContent([req.body.prompt, image]);
         const response = result.response.text();
 
+        // Clean up the uploaded file
+        fs.unlinkSync(req.file.path);
+
         // Send the response back to the frontend
         res.json({ result: response });
     } catch (error) {
@@ -67,10 +98,8 @@ app.post('/api/analyze', upload.single('image'), async (req, res) => {
     }
 });
 
-// Health check endpoint
-app.get('/api/health', (req, res) => {
-    res.json({ status: 'OK', message: 'Server is running' });
+// Start the server
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => {
+    console.log(`Server is running on port ${PORT}`);
 });
-
-// Export for Vercel serverless functions
-export default app;
