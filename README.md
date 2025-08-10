@@ -1,6 +1,6 @@
 # 🧠 AI-Powered Code Generator from Image 
 
-![MIT Technophilia 2025](https://img.shields.io/badge/MIT-Technophilia%202025-blue)  
+
 🚀 **Built in 12 Hours | Powered by Google AI Studio & Gemini API**
 
 ## 🖼️ Project Overview
