@@ -79,16 +79,6 @@ Our team participated in the **Technophilia 2025 AI Hackathon** at MIT College, 
 - 🛠️ **Team Effort:** Collaboration and AI model training within limited time
 
 ---
-
-## 🔗 References
-
-- [Google AI Studio](https://makersuite.google.com/) – For training and deploying the AI model.
-- [Gemini API by Google](https://deepmind.google/discover/gemini/) – Used for image understanding and code generation.
-- [Node.js](https://nodejs.org/) – Backend runtime environment.
-- [HTML & CSS Documentation](https://developer.mozilla.org/en-US/) – For frontend structure and styling.
-
----
-
 ## 🧪 Getting Started
 
 Follow these instructions to set up and run the project locally on your machine (localhost:3000).
